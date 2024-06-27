@@ -50,10 +50,10 @@ metadata: story-set
 #   Enter information for your organization (replacing the CDIL links and name below) if you'd like to brand your site with a logo
 #   To remove the branding, comment out these values, or delete them. 
 #
-organization-name: "Center for Digital Inquiry and Learning (CDIL)"
-organization-link: https://cdil.lib.uidaho.edu/
-organization-logo-banner: https://cdil.lib.uidaho.edu/storying-extinction/assets/img/cdil.png
-organization-logo-nav: https://cdil.lib.uidaho.edu/assets/img/logo.png
+organization-name: "Keywords for Black Louisiana (K4BL)"
+organization-link: https://www.lifexcode.org/keywordsblackla
+organization-logo-banner: /assets/img/logo.jpg
+organization-logo-nav: /assets/img/logo.jpg
 
 ##########
 # ROBOTS EXCLUDE
