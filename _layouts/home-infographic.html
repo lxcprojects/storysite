@@ -8,24 +8,32 @@ layout: page
   <div class="col-md-8">
 
     {% include index/description.html %}
-    {% include index/carousel.html title="Sample Items" %}
+
+    {% comment %}
+      {% include index/carousel.html title="Sample Items" %}
+    {% endcomment %}
     
   </div>
   <div class="col-md-4">  
 
     {% include index/time.html %}
 
-    {% include index/featured-terms.html field="subject" title="Top Subjects" btn-color="primary" %}
+    {% include index/featured-terms.html field="subject" title="Keywords" btn-color="primary" %}
 
-    {% include index/featured-terms.html field="location" title="Locations" btn-color="outline-secondary" %}
+    {% include index/featured-terms.html field="location" title="Biographies" btn-color="outline-secondary" %}
     
-    {% include index/objects.html %}
+    {% comment %}
+      {% include index/objects.html %}
+    {% endcomment %}
 
   </div>
+
+  {% comment %}
   <div class="col-md-12">
 
     {% include index/data-download.html %}
 
   </div>
+  {% endcomment %}
 
 </div>
