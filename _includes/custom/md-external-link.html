@@ -1,0 +1,22 @@
+{% comment %}
+
+    Add a link styled as a button. Value may be a Markdown formatted link
+    Parameters:
+        - value: (string)
+        - external: (boolean) external links?
+
+{% endcomment %}
+
+{% if include.value | strip | slice: 0 == "[" and include.value | strip | slice:-1 == ")" and include.value | strip | split: "](" | length == 2 %}
+    {% comment %} ### Markdown link ### {% endcomment %}
+    {% assign parts = include.value | strip | split: "](" %}
+    {% assign label = parts[0] | remove: "[" %}
+    {% assign href = parts[1] | remove: ")" %}
+    <a class="btn btn-info" href="{{ href }}" target="_blank" rel="noopener">
+        {{ label }} {% if include.external %}{% include feature/icon.html icon="box-arrow-up-right" label="Open in new tab" %}{% endif %}
+    </a>
+{% else %}
+    <a class="d-block" href="{{ include.value }}" target="_blank" rel="noopener">
+        {{ include.value }} {% if include.external %}{% include feature/icon.html icon="box-arrow-up-right" label="Open in new tab" %}{% endif %}
+    </a>
+{% endif %}
