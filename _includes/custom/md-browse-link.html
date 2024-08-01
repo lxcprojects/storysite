@@ -1,0 +1,19 @@
+{% comment %}
+
+    Add a browse link styled as a button. Value may be a markdown link
+    Parameters:
+        - value: (string)
+        - class: (string) CSS classes
+
+{% endcomment %}
+
+{% assign href = include.value | strip | url_param_escape | prepend: '/browse.html#' | relative_url %}
+
+{% if include.value | strip | slice: 0 == "[" and include.value | strip | slice:-1 == ")" and include.value | strip | split: "](" | length == 2 %}
+    {% comment %} ### Markdown link ### {% endcomment %}
+    {% assign parts = include.value | strip | split: "](" %}
+    {% assign label = parts[0] | remove: "[" %}
+    <a class="{{ include.class }}" href="{{ href }}">{{ label }}</a>
+{% else %}
+    <a class="{{ include.class }}" href="{{ href }}">{{ include.value }}</a>
+{% endif %}
