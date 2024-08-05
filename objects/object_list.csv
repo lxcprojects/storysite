@@ -1,0 +1,15 @@
+filename,object_location,image_small,image_thumb
+demo_005.txt,/objects/demo_005.txt,,
+hells_half_theta.jpg,/objects/hells_half_theta.jpg,/objects/small/hells_half_theta_sm.jpg,/objects/thumbs/hells_half_theta_th.jpg
+hughes_article.png,/objects/hughes_article.png,/objects/small/hughes_article_sm.jpg,/objects/thumbs/hughes_article_th.jpg
+210a.jpg,/objects/210a.jpg,/objects/small/210a_sm.jpg,/objects/thumbs/210a_th.jpg
+chaouachas.jpeg,/objects/chaouachas.jpeg,/objects/small/chaouachas_sm.jpg,/objects/thumbs/chaouachas_th.jpg
+charity.jpeg,/objects/charity.jpeg,/objects/small/charity_sm.jpg,/objects/thumbs/charity_th.jpg
+210b.jpg,/objects/210b.jpg,/objects/small/210b_sm.jpg,/objects/thumbs/210b_th.jpg
+demo_004.jpg,/objects/demo_004.jpg,/objects/small/demo_004_sm.jpg,/objects/thumbs/demo_004_th.jpg
+demo_001.jpg,/objects/demo_001.jpg,/objects/small/demo_001_sm.jpg,/objects/thumbs/demo_001_th.jpg
+demo_002.pdf,/objects/demo_002.pdf,/objects/small/demo_002_sm.jpg,/objects/thumbs/demo_002_th.jpg
+demo_012.md,/objects/demo_012.md,,
+map.jpeg,/objects/map.jpeg,/objects/small/map_sm.jpg,/objects/thumbs/map_th.jpg
+demo_003.mp3,/objects/demo_003.mp3,,
+church.jpeg,/objects/church.jpeg,/objects/small/church_sm.jpg,/objects/thumbs/church_th.jpg
