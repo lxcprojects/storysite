@@ -46,7 +46,10 @@
         {% if include.title %}<h2 class="card-title h5">{{ include.title }}</h2>{% endif %}
         <p class="card-text">
             {% for s in topTerms %}
-            <a class="btn btn-sm btn-{{ include.btn-color | default: 'primary' }} m-1" href="{{ s | strip | url_param_escape | prepend: '/browse.html#' | relative_url }}">{{ s | strip }}</a>{% endfor %}
+                {% assign color = include.btn-color | default: 'primary' %}
+                {% assign classes = "btn btn-sm btn-" | append: color | append: " m-1" %}
+                {% include custom/md-browse-link.html value=s class=classes %}
+            {% endfor %}
         </p>
     </div>
 </div>

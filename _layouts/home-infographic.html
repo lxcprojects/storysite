@@ -20,8 +20,10 @@ layout: page
 
     {% include index/featured-terms.html field="subject" title="Keywords" btn-color="primary" %}
 
-    {% include index/featured-terms.html field="location" title="Biographies" btn-color="outline-secondary" %}
-    
+    {% comment %}
+      {% include index/featured-terms.html field="location" title="Biographies" btn-color="outline-secondary" %}
+    {% endcomment %}
+
     {% comment %}
       {% include index/objects.html %}
     {% endcomment %}

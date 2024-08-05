@@ -1,0 +1,20 @@
+{% comment %}
+
+    Adds zero or more links, styled as buttons
+    Parameters:
+        - value: (string) may include multiple delimited values
+        - delimiter: (string) Optional. Default: ";"
+        - external: (boolean) external links?
+
+{% endcomment %}
+
+{% assign delimiter = include.delimiter %}
+{% unless delimiter %}
+    {% assign delimiter = ";" %}
+{% endunless %}
+
+{% assign values = include.value | split: delimiter %}
+
+{% for value in values %}
+    {% include custom/md-external-link.html value=value external=include.external %}
+{% endfor %}

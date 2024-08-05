@@ -11,12 +11,13 @@
         <dt class="field">{{ f.display_name }}:</dt>
         <dd class="field-value">
             {% if f.browse_link == "true" %}
-            {% assign topics = page[f.field] | split: ";" %}
-            {% for t in topics %}
-            <a class="me-3" href="{{ t | strip | url_param_escape | prepend: '/browse.html#' | relative_url }}">{{ t | strip }}</a>
-            {% endfor %}
+                {% assign topics = page[f.field] | split: ";" %}
+                {% for t in topics %}
+                    <a class="me-3" href="{{ t | strip | url_param_escape | prepend: '/browse.html#' | relative_url }}">{{ t | strip }}</a>
+                {% endfor %}
             {% elsif f.external_link == "true" %}
-            <a href="{{ page[f.field] }}" target="_blank" rel="noopener">{{ page[f.field] }}</a>
+                {% assign val = page[f.field] %}
+                {% include custom/multivalue-external-links.html value=val external="true" %}
             {% else %}
             {{ page[f.field] | replace: '""','"' }}{% endif %}
         </dd>
