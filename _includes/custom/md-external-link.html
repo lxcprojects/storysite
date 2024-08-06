@@ -12,7 +12,7 @@
     {% assign parts = include.value | strip | split: "](" %}
     {% assign label = parts[0] | remove: "[" %}
     {% assign href = parts[1] | remove: ")" %}
-    <a class="btn btn-info" href="{{ href }}" target="_blank" rel="noopener">
+    <a class="btn btn-info mb-2" href="{{ href }}" target="_blank" rel="noopener">
         {{ label }} {% if include.external %}{% include feature/icon.html icon="box-arrow-up-right" label="Open in new tab" %}{% endif %}
     </a>
 {% else %}
