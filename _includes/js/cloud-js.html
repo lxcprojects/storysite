@@ -58,11 +58,28 @@
         {% if include.shuffle == true %}shuffle(array);{% endif %}
         for (i = 0; i < array.length; i++) {
             size = mapSize(array[i][1]);
-            items += '<a class="btn btn-{{ include.button | default: "outline-primary" }} m-2 tagcloud' + size + '" href="{{ "/browse.html" | relative_url }}#' + encodeURIComponent(array[i][0]) + '" >' + array[i][0] + '</a>';
+            const label = array[i][0];
+            const href = `{{ "/browse.html" | relative_url }}#${encodeURIComponent(array[i][0])}`;
+
+            items += generateLink(label, href, size);
         }
         cloud.innerHTML = items;
     }
     makeGrid(terms);
 
 })();
+
+function generateLink(label, href, size) {
+    const clazz = `btn btn-{{ include.button | default: "secondary" }} m-2 tagcloud${size}`;
+    // Note: we can't do variable substitution at all in JS using Jekyll includes
+    // because this JS file will be rewritten by Jekyll and the include will have a static
+    // value of "${label}" instead of our intended value
+    if (label.startsWith('[') && label.endsWith(')') && label.includes('](')) {
+        // Very likely a markdown link
+        const parts = label.slice(1, -1).split('](');
+        label = parts[0];
+        // href = parts[1];
+    }
+    return `<a class="${clazz}" href="${href}">${label}</a>`;
+}
 </script>
