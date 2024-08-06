@@ -8,11 +8,11 @@
 # URL VARIABLES
 #
 # site domain, full URL to the production location of your collection
-url: 
+url: https://stories.k4bl.org
 # path to location on the domain if necessary e.g. /digital/hjccc
 baseurl: 
 # location of code, the full url to your github repository
-source-code: https://github.com/CollectionBuilder/collectionbuilder-csv
+source-code: https://github.com/lxcprojects/storysite
 
 ##########
 # SITE SETTINGS
@@ -27,7 +27,7 @@ description: "K4BL is the home for document collections and project information 
 # keywords, a short list of subjects describing the collection, separated by semicolon, to appear in rich markup
 keywords: Louisiana;Black history;slavery;stories
 # creator of the digital collection, to appear in meta tags; we typically use our GitHub usernames but feel free to just use your name
-author: CollectionBuilder
+author: egpalazzolo
 
 ##########
 # COLLECTION SETTINGS
