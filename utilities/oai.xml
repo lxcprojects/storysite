@@ -57,7 +57,7 @@ permalink: /oai.xml
                     {%- endif -%}
                     {%- endfor -%}
                     <dc:identifier>{{ item.objectid }}</dc:identifier>
-                    <dc:identifier>{{ '/items/' | absolute_url | append: item.objectid | append: '.html' }}</dc:identifier>
+                    <dc:identifier>{{ '/stories/' | absolute_url | append: item.objectid | append: '.html' }}</dc:identifier>
                 </oai_dc:dc>
             </oai:metadata>
         </oai:record>

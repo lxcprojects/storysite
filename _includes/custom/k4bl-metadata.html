@@ -23,10 +23,10 @@
                     {% assign val = page[f.field] %}
                     {% include custom/multivalue-external-links.html value=val external="true" %}
                 {% elsif f.field == 'description' %}
-                    {% capture intended_url %}/items/stories/{{ page[f.field] }}{% endcapture %}
+                    {% capture intended_url %}/stories/descriptions/{{ page[f.field] }}{% endcapture %}
                     {% assign description = site.static_files | where: "path", intended_url | first %}
                     {% if description %}
-                        {% capture include_path %}stories/{{ page[f.field] }}{% endcapture %}
+                        {% capture include_path %}descriptions/{{ page[f.field] }}{% endcapture %}
                         {% capture description_content %}
                             {% include_relative {{ include_path }} %}
                         {% endcapture %}
