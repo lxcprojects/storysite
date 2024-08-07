@@ -1,0 +1,42 @@
+{% comment %}
+
+    Adds metadata to item pages in a description list element.
+    Fields are configured via _data/config-metadata.csv
+
+    K4BL customization that treats 'description' separately,
+    bringing in markdown content from '_stories' directory
+    
+{%- endcomment -%}
+{%- assign fields = site.data.config-metadata | where_exp: 'item', 'item.display_name != nil' -%}
+<div id="item-metadata">
+    <dl>
+        {% for f in fields %}
+            {% if page[f.field] %}
+            <dt class="field">{{ f.display_name }}:</dt>
+            <dd class="field-value">
+                {% if f.browse_link == "true" %}
+                    {% assign topics = page[f.field] | split: ";" %}
+                    {% for t in topics %}
+                        <a class="me-3" href="{{ t | strip | url_param_escape | prepend: '/browse.html#' | relative_url }}">{{ t | strip }}</a>
+                    {% endfor %}
+                {% elsif f.external_link == "true" %}
+                    {% assign val = page[f.field] %}
+                    {% include custom/multivalue-external-links.html value=val external="true" %}
+                {% elsif f.field == 'description' %}
+                    {% capture intended_url %}/items/stories/{{ page[f.field] }}{% endcapture %}
+                    {% assign description = site.static_files | where: "path", intended_url | first %}
+                    {% if description %}
+                        {% capture include_path %}stories/{{ page[f.field] }}{% endcapture %}
+                        {% capture description_content %}
+                            {% include_relative {{ include_path }} %}
+                        {% endcapture %}
+                        {{ description_content | markdownify }}
+                    {% endif %}
+                {% else %}
+                    {{ page[f.field] | replace: '""','"' }}
+                {% endif %}
+            </dd>
+            {% endif %}
+        {% endfor %}
+    </dl>
+</div>
