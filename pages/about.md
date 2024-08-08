@@ -11,6 +11,15 @@ credits: true
 
 {% include feature/nav-menu.html sections="How Did We Get Here?;Values Statement;NHPRC;LifexCode" %}
 
+## About Keywords for Black Louisiana
+
+Keywords for Black Louisiana (K4BL) is a collective of researchers creating digital projects highlighting the Black life and culture of the Gulf Coast. With the support of funding from the National Historic Publications and Records Commission, K4BL is building a community-engaged digital edition of annotated, transcribed and translated manuscript documents from 18th century (French and Spanish) Louisiana. The stories in these documents describe the lives and resistance of enslaved and free people of African descent against bondage, colonialism, and the everyday terror of slavery. Access to the stories of Black life in these documents has been limited to those trained in paleography or with French and/or Spanish translation skills. Providing access to the stories in these documents through English language translations and digital access does more than offer researchers, teachers, public historians, and artists opportunities to learn from the centuries-long Black freedom struggle Gulf Coast communities have been engaged in. It also creates a tremendous resource for African descended communities in Louisiana whose ancestors fueled some of the most important moments in American history.  
+
+K4BL centers African descended Gulf Coast communities and accountability to Black humanity at every level of the project, from the annual Black History Summer Workshop for Black public historians in Louisiana, to our collaborations with team members at Louisiana historically black colleges and universities, to our intergenerational and decentralized leadership structure, to our commitment to Black Digital Humanities (DH) principles.  
+
+We hope K4BL can provide a model for community-engaged digital recovery and preservation that will be remixed and reused by digital historians, computational humanists, data scientists, and digital humanities practitioners broadly who are looking for ethical and humane ways to center the needs of Black communities and institutions on the ground in the work of creating and curating digital materials.   
+
+
 ## How Did We Get Here?  
   
 Beginning in 2020 as part of LifexCode: Digital Humanities Against Enclosure (lifexcode.org), and most recently through funding from a National Historic Publications and Records Commission grant, we have embarked on research in Gulf Coast Louisiana’s archive, seeking to expand our historical practice and learn from what eighteenth-century Gulf Coast Louisiana has to teach us.  
