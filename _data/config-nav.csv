@@ -1,6 +1,6 @@
-display_name,stub,dropdown_parent
+display_name,stub,external,dropdown_parent
 Home,/
-Stories,/browse.html
-Keywords,/subjects.html
-About,/about.html
-Documents,/docs.k4bl.org/collection
+Stories,/browse.html,FALSE
+Keywords,/subjects.html,FALSE
+About,/about.html,FALSE
+Documents,/docs.k4bl.org/collection,TRUE
