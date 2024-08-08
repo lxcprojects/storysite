@@ -16,7 +16,15 @@
                 {% for nav in navItems %}
                 {% if nav.stub %}
                 <li class="nav-item">
-                    <a class="nav-link{% if page.url == nav.stub %} active{% endif %}" href="{{ nav.stub | relative_url }}">{{ nav.display_name }}</a>
+                    <a href="{{ nav.stub | relative_url }}"
+                            class="nav-link{% if page.url == nav.stub %} active{% endif %}"
+                            target="{% if nav.external == 'TRUE' or nav.external == 'true' %}_blank{% endif %}"
+                    >
+                        {{ nav.display_name }}
+                        {% if nav.external == 'TRUE' or nav.external == 'true' %}
+                            {% include feature/icon.html icon="box-arrow-up" %}
+                        {% endif %}
+                    </a>
                 </li>
                 {%- else -%}
                 <li class="nav-item dropdown">
