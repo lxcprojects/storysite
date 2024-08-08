@@ -1,67 +1,68 @@
-<footer class="bg-dark pt-4 mt-auto container-fluid">
-    <div class="row">
-        <div class="col-md-7 px-4">
-            <h2 class="h4"><a href="{{ '/' | relative_url }}" class="text-white">{{ site.title }}</a></h2>
-            <p class="text-white"><small>{{ site.description }}</small></p>
-            <nav>
-                <ul id="footer-nav" class="nav nav-pills ">
-                    {%- assign navItems = site.data.config-nav | where_exp: 'item', 'item.dropdown_parent == nil' -%}
-                    {% for nav in navItems %}
-                    <li class="nav-item">
-                    {% if nav.stub %}
-                        <a href="{{ nav.stub | relative_url }}"
-                                class="nav-link text-light{% if page.url == nav.stub %} active{% endif %}"
-                                target="{% if nav.external == 'TRUE' or nav.external == 'true' %}_blank{% endif %}"
-                        >
-                            {{ nav.display_name }}
-                            {% if nav.external == 'TRUE' or nav.external == 'true' %}
-                                {% include feature/icon.html icon="box-arrow-up" %}
-                            {% endif %}
+<footer class="bg-dark pt-4 mt-auto w-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7 px-4">
+                <h2 class="h4"><a href="{{ '/' | relative_url }}" class="text-white">{{ site.title }}</a></h2>
+                <p class="text-white"><small>{{ site.description }}</small></p>
+                <nav>
+                    <ul id="footer-nav" class="nav nav-pills ">
+                        {%- assign navItems = site.data.config-nav | where_exp: 'item', 'item.dropdown_parent == nil' -%}
+                        {% for nav in navItems %}
+                        <li class="nav-item">
+                        {% if nav.stub %}
+                            <a href="{{ nav.stub | relative_url }}"
+                                    class="nav-link text-light{% if page.url == nav.stub %} active{% endif %}"
+                                    target="{% if nav.external == 'TRUE' or nav.external == 'true' %}_blank{% endif %}"
+                            >
+                                {{ nav.display_name }}
+                                {% if nav.external == 'TRUE' or nav.external == 'true' %}
+                                    {% include feature/icon.html icon="box-arrow-up" %}
+                                {% endif %}
+                            </a>
+                        {%- else -%}
+                        {% assign childStub = site.data.config-nav | where_exp: 'item', 'item.dropdown_parent == nav.display_name' | first %}
+                            <a class="nav-link text-light{% if page.url == childStub.stub %} active{% endif %}" href="{{ childStub.stub | relative_url }}">{{ nav.display_name }}</a>
+                        {% endif %}
+                        </li>
+                        {%- endfor -%}
+                    </ul>
+                </nav>
+            </div>
+    
+            <div class="col-md text-center">
+                {% if site.organization-logo-nav %}
+                    <p class="text-md-end">
+                        <a href="{{ site.organization-link }}" target="_blank" rel="noopener">
+                        <!-- <img id="footer-logo" class="img-fluid" src="{{ site.organization-logo-nav | relative_url }}" alt="{{ site.organization-name | escape }} home"> -->
                         </a>
-                    {%- else -%}
-                    {% assign childStub = site.data.config-nav | where_exp: 'item', 'item.dropdown_parent == nav.display_name' | first %}
-                        <a class="nav-link text-light{% if page.url == childStub.stub %} active{% endif %}" href="{{ childStub.stub | relative_url }}">{{ nav.display_name }}</a>
-                    {% endif %}
-                    </li>
-                    {%- endfor -%}
-                </ul>
-            </nav>
-        </div>
-
-        <div class="col-md text-center">
-            {% if site.organization-logo-nav %}
-                <p class="text-md-end">
-                    <a href="{{ site.organization-link }}" target="_blank" rel="noopener">
-                    <!-- <img id="footer-logo" class="img-fluid" src="{{ site.organization-logo-nav | relative_url }}" alt="{{ site.organization-name | escape }} home"> -->
-                    </a>
+                    </p>
+                {% endif %}
+                <p class="text-white text-md-end" id="footer-credits">
+                    <small><em>built with</em>
+                        <a href="https://collectionbuilder.github.io/" target="_blank" rel="noopener" title="CollectionBuilder">
+                            <img src="{{ '/assets/img/collectionbuilder-logo.png' | relative_url }}" class="img-fluid" alt="CollectionBuilder" >
+                        </a>
+                    </small>
                 </p>
-            {% endif %}
-            <p class="text-white text-md-end" id="footer-credits">
-                <small><em>built with</em>
-                    <a href="https://collectionbuilder.github.io/" target="_blank" rel="noopener" title="CollectionBuilder">
-                        <img src="{{ '/assets/img/collectionbuilder-logo.png' | relative_url }}" class="img-fluid" alt="CollectionBuilder" >
-                    </a>
-                </small>
-            </p>
-        </div>
-    </div>
-
-    <div class="row align-items-center border-bottom border-white py-3">
-        <div class="col-md-7 px-4 text-white">
-            <div id="cc-license" class="border p-3" xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"> 
-                <a property="dct:title" style="color: white;" rel="cc:attributionURL" href="http://stories.k4bl.org">Keywords for Black Louisiana Story Site</a> by <a rel="cc:attributionURL dct:creator" style="color: white;" property="cc:attributionName" href="http://keywordsforblacklouisiana.org">K4BL Collective</a> is licensed under <a style="color: white;" href="https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" alt=""></a>
             </div>
         </div>
-
-        <div class="col-md-5">
-            <div class="text-md-end">
-                <img id="additional-logo" class="img-fluid" src="/assets/img/nhprc-logo.jpg" alt="NHPRC Logo" style="width:100px;height:auto;">
+    
+        <div class="row align-items-center border-bottom border-white py-3">
+            <div class="col-md-7 px-4 text-white">
+                <div id="cc-license" class="border p-3" xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"> 
+                    <a property="dct:title" style="color: white;" rel="cc:attributionURL" href="http://stories.k4bl.org">Keywords for Black Louisiana Story Site</a> by <a rel="cc:attributionURL dct:creator" style="color: white;" property="cc:attributionName" href="http://keywordsforblacklouisiana.org">K4BL Collective</a> is licensed under <a style="color: white;" href="https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" alt=""></a>
+                </div>
+            </div>
+    
+            <div class="col-md-5">
+                <div class="text-md-end">
+                    <img id="additional-logo" class="img-fluid" src="/assets/img/nhprc-logo.jpg" alt="NHPRC Logo" style="width:100px;height:auto;">
+                </div>
             </div>
         </div>
+    
+        <div class="row text-center pt-3">
+            <p class="text-white"><small>Last updated {{ site.time | date: "%b %d, %Y" }}</small></p>
+        </div>
     </div>
-
-    <div class="row text-center pt-3">
-        <p class="text-white"><small>Last updated {{ site.time | date: "%b %d, %Y" }}</small></p>
-    </div>
-
 </footer>
