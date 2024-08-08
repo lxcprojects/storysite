@@ -26,3 +26,15 @@
     margin-left: 2rem;
     border-left: 4px solid var(--bs-gray-500);
 }
+
+#cc-license {
+    font-size: 0.9rem;
+    a {
+        color: #f5d877 !important;
+
+        &:hover {
+            color: white !important;
+            text-decoration: underline;
+        }
+    }
+}
