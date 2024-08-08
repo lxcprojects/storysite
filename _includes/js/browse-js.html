@@ -26,7 +26,7 @@ function makeCard(obj) {
     // placeholder image for lazyload
     var placeholder = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 2'%3E%3C/svg%3E";
     // find item link
-    var itemHref = `{{ '/items/' | relative_url }}${ obj.parent ? obj.parent + ".html#" + obj.id : obj.id + ".html"}`; 
+    var itemHref = `{{ '/stories/' | relative_url }}${ obj.parent ? obj.parent + ".html#" + obj.id : obj.id + ".html"}`; 
     // find image
     var imgSrc, thumbIcon;
     // if there is a thumb in the csv display it
@@ -79,11 +79,11 @@ function makeCard(obj) {
     {% endunless %}{% endfor %}
     card += '</p>';
     // media type
-    if(obj.template && obj.template != "") {
-        mediaIcon = getIcon(obj.template,obj.format,"hidden");
-        card += '<p class="card-text"><small><a class="btn btn-sm btn-outline-secondary" href="{{ page.url | relative_url }}#' + encodeURIComponent(obj.template) + '">' + 
-        obj.template.toUpperCase() + ' ' + mediaIcon + '</a></small></p>';
-    }
+    // if(obj.template && obj.template != "") {
+    //     mediaIcon = getIcon(obj.template,obj.format,"hidden");
+    //     card += '<p class="card-text"><small><a class="btn btn-sm btn-outline-secondary" href="{{ page.url | relative_url }}#' + encodeURIComponent(obj.template) + '">' + 
+    //     obj.template.toUpperCase() + ' ' + mediaIcon + '</a></small></p>';
+    // }
     // view button
     card += '<hr><a href="' + itemHref + '" class="btn btn-sm btn-light" title="link to ' + obj.title + '">View Story</a>';
     // close divs

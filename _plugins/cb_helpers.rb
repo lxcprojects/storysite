@@ -66,9 +66,9 @@ module CollectionBuilderHelperGenerator
             featured_item_alt = featured_record[0]['title'] || site.config['title']
             # figure out item link
             if featured_record[0]['parentid']
-              featured_item_link = "/items/" + featured_record[0]['parentid'] + ".html#" + featured_image
+              featured_item_link = "/stories/" + featured_record[0]['parentid'] + ".html#" + featured_image
             else
-              featured_item_link = "/items/" + featured_image + ".html"
+              featured_item_link = "/stories/" + featured_image + ".html"
             end
           end
         else
