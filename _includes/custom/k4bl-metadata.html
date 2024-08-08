@@ -27,9 +27,9 @@
                     {% assign description = site.static_files | where: "path", intended_url | first %}
                     {% if description %}
                         {% capture include_path %}descriptions/{{ page[f.field] }}{% endcapture %}
-                        {% capture description_content %}
-                            {% include_relative {{ include_path }} %}
-                        {% endcapture %}
+                        {%- capture description_content -%}
+                            {%- include_relative {{ include_path }} -%}
+                        {%- endcapture -%}
                         {{ description_content | markdownify }}
                     {% endif %}
                 {% else %}
