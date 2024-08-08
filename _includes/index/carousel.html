@@ -78,9 +78,9 @@
         itemImg = carouselItems[i][2];
         // calculate item link
         if (carouselItems[i][3]){
-            itemLink = '{{ '/stories/' | relative_url }}' + carouselItems[i][3] + '.html#' + carouselItems[i][1];}
+            itemLink = '{{ '/items/' | relative_url }}' + carouselItems[i][3] + '.html#' + carouselItems[i][1];}
         else {
-            itemLink = '{{ '/stories/' | relative_url }}' + carouselItems[i][1] + '.html';
+            itemLink = '{{ '/items/' | relative_url }}' + carouselItems[i][1] + '.html';
         }   
         // create indicator 
         indicator = `<button type="button" data-bs-target="#imageCarousel" data-bs-slide-to="${i.toString()}" ${ i == 0 ? 'class="active" aria-current="true" ' : '' }aria-label="Slide ${i.toString()}"></button>`;
