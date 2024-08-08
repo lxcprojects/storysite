@@ -9,7 +9,5 @@ latitude,Latitude
 longitude,Longitude
 source,Documents,,true
 identifier,Source Identifier,,
-type,Type,
-format,Format,
 rights,Rights,
 rightsstatement,Rights Statement,,true
