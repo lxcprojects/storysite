@@ -5,7 +5,7 @@ permalink: /lacolonialdocs.html
 
 ## Louisiana Colonial Documents Digitization Project
 
-![Louisiana Colonial Documents Digitization Project Screenshot with logos from the New Orleans Jazz Museum and the Louisiana State Museum]({% link /assets/figures/lacolonialdocs.png %})
+![Louisiana Colonial Documents Digitization Project Screenshot with logos from the New Orleans Jazz Museum and the Louisiana State Museum]({% link /assets/img/storyimages/lacolonialdocs.png %})
 
 Target documents are currently housed at the Louisiana Historical Center (LHC) and maintained by the New Orleans Jazz Museum, one of our institutional partners. As described on their website, “The Louisiana Colonial Documents Digitization Project’s digitization and online publication of the LHC’s Colonial Documents Collection will exponentially increase access to a rich archive for researchers of every stripe, from high school students to amateur genealogists to academic historians. This twenty-first-century high-tech undertaking marks the most recent phase of a series of efforts stretching back more than a hundred years to make it easier for researchers to navigate this enormous collection of criminal and civil court cases, commercial transactions, successions, wills, and other legal documents dating back to 1714. Global access to these 220,000 pages, handwritten in French and Spanish, will open up these archives as never before to those who study Louisiana and its inhabitants.”
 
