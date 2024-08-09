@@ -94,6 +94,4 @@ mangrove: “any of a genus of tropical maritime trees or shrubs that send out m
 
 Like the mangrove, we labor to transform the salt of enclosure into sweet water and nutrients, rooting deep at the edge of the sea to support and protect ecosystems teeming with resistant and resilient life.
 
-Tree Image Credit: @ChattPan on Canva  
-
-{% include feature/image.html objectid="demo_001" width="75" %} 
+Tree Image Credit: @ChattPan on Canva 
