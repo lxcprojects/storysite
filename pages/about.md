@@ -58,29 +58,23 @@ We are grateful to the LCDDP for permitting widespread use of their database and
 
 ## NHPRC  
   
-The National Historical Publications and Records Commission (NHPRC), a statutory body affiliated with the National Archives and Records Administration (NARA), supports a wide range of activities to preserve, publish, and encourage the use of documentary sources, created in every medium ranging from quill pen to computer, relating to the history of the United States.
+The National Historical Publications and Records Commission (NHPRC), a statutory body affiliated with the National Archives and Records Administration (NARA), supports a wide range of activities to preserve, publish, and encourage the use of documentary sources, created in every medium ranging from quill pen to computer, relating to the history of the United States.  
 
 The NHPRC:
-
-was established by Congress in 1934
-is a 15-member body
-is chaired by the Archivist of the United States
-is composed of representatives of the three branches of the Federal Government
-is composed of professional associations of archivists, historians, documentary editors, and records administrators
-NHPRC administrative staff at the National Archives in Washington, DC:
-  
-implements its policies and recommendations
-advises NHPRC on proposals
-provides advice and assistance to potential applicants and grantees  
+* was established by Congress in 1934  
+* is a 15-member body
+* is chaired by the Archivist of the United States
+* is composed of representatives of the three branches of the Federal Government
+* is composed of professional associations of archivists, historians, documentary editors, and records administrators  
+ 
+NHPRC administrative staff at the National Archives in Washington, DC:  
+* implements its policies and recommendations
+* advises NHPRC on proposals
+* provides advice and assistance to potential applicants and grantees  
 
 ## LifexCode  
   
-LifexCode offers a grammar of refusal and a language of freedom for the (digital) humanities. Founded in 2020, by Drs. Jessica Marie Johnson and Christina Thomas, LifexCode is an ecosystem of labs, projects, community partners, and members exploring, creating, and centering antiracist and decolonial digital humanities practices.
 
-The tree representing the LifexCode collective in our new logo is called a mangrove:
+[LifexCode: Digital Humanities Against Enclosure](http://lifexcode.org) offers a grammar of refusal and a language of freedom for the (digital) humanities. Founded in 2020, by Drs. Jessica Marie Johnson and Christina Thomas, LifexCode is an ecosystem of labs, projects, community partners, and members exploring, creating, and centering antiracist and decolonial digital humanities practices.   
 
-mangrove: “any of a genus of tropical maritime trees or shrubs that send out many prop roots and form dense masses important in coastal land building and as foundations of unique ecosystems.” Webster’s English Dictionary
-
-Like the mangrove, we labor to transform the salt of enclosure into sweet water and nutrients, rooting deep at the edge of the sea to support and protect ecosystems teeming with resistant and resilient life.
-
-Tree Image Credit: @ChattPan on Canva 
+Learn more [lifexcode.org](http://lifexcode.org).
