@@ -6,11 +6,12 @@
 <div class="card">
     <div class="card-header">Source</div>
     <div class="card-body">
-        <dl>
-            <dt>Preferred Citation:</dt>
-            <dd>"{{ page.title }}", {{ site.title }}, {{ site.organization-name }}</dd>
-            <dt>Reference Link:</dt>
-            <dd>{{ page.url | absolute_url }}</dd>
-        </dl>
+        <dd>
+            "{{ page.title }}," <i>{{ site.title }}</i>, {{ site.organization_name }} 
+            accessed {{ 'now' | date: "%B %d, %Y" }}. 
+            <a href="{{ page.url | absolute_url }}" target="_blank" rel="noopener noreferrer">
+                {{ page.url | absolute_url }}
+            </a>
+        </dd>
     </div>
 </div>
