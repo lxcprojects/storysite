@@ -1,0 +1,17 @@
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasContents" aria-labelledby="offcanvasContentsLabel">
+    <div class="offcanvas-header">
+        <p class="offcanvas-title mb-0" id="offcanvasContentsLabel">Contents</p>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        {%- assign ordered_essays = site.essay | sort: 'order' -%}
+        {% for e in ordered_essays %}
+        {% if e.title and e.order %}
+        <a class="essay-toc-link{% if page.url == e.url %} is-current{% endif %}" href="{{ e.url | relative_url }}">
+            {% if e.chapter %}<span class="essay-toc-num">{{ e.chapter }}</span>{% endif %}
+            <span class="essay-toc-title">{{ e.title }}</span>
+        </a>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
