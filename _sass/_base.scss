@@ -3,16 +3,41 @@
     these values are configurable using theme.yml > Theme Fonts area 
     or by editing base variables in cb.scss
 */
-body {
-    @if $base-font-family != "" { font-family: $base-font-family; }
+
+/* set up base variable to override from cb.scss */
+$base-font-family: "" !default;
+$base-font-size: "" !default;
+$text-color: "" !default;
+$link-color: "" !default;
+
+/* smooth scroll for back to top, unless user opt out */
+/* font-size on html so rem-based Bootstrap heading sizes scale with base-font-size */
+html {
+    @media (prefers-reduced-motion: no-preference) {
+      scroll-behavior: smooth;
+    }
     @if $base-font-size != "" { font-size: $base-font-size; }
+}
+
+/* set font base set in theme.yml */
+/* When an explicit font (not 'theme') is provided, propagate it into the CSS
+   variable so the cascade and --cb-font-family-display fallbacks work. */
+@if $base-font-family != "" and $base-font-family != theme {
+    :root { --cb-font-family-base: #{$base-font-family}; }
+}
+body {
+    font-family: var(--cb-font-family-base, Georgia, serif);
     @if $text-color != "" { color: $text-color; }
 }
+@if $link-color != "" {
+    :root { --bs-link-color: #{$link-color}; }
+}
+
 a {
-    /* remove link underline */ 
+    /* remove link underline */
     text-decoration: none;
-    @if $link-color != "" { 
-        color: $link-color; 
+    @if $link-color != "" {
+        color: $link-color;
         &:hover {
             @if $text-color != "" { color: $text-color; }
         }
@@ -30,7 +55,6 @@ a {
 	border-bottom:1px solid white;
 	border-bottom-right-radius:8px;
 	background:#BF1722;
-	-webkit-transition: top 1s ease-out;
     transition: top 1s ease-out;
     z-index: 100;
 }
@@ -39,7 +63,6 @@ a {
 	left:0px;
 	top:0px;
 	outline-color:transparent;	
-	-webkit-transition: top .1s ease-in;
     transition: top .1s ease-in;
 }
 

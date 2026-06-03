@@ -1,0 +1,958 @@
+/*  
+    essay - style tweaks related to essay layout and essay features
+*/
+
+/* scroll to top tweaks */
+#scroll-to-top {
+    font-size: 30px; 
+}
+
+#scroll-to-top a {
+    display: block;
+    font-size: 30px;
+    transition: opacity 0.15s ease;
+
+    &:hover {
+        opacity: 0.65;
+    }
+}
+
+/* essay navigation arrows - horizontal layout like keyboard arrows */
+.scroll-nav-arrows {
+    display: flex;
+    justify-content: center;
+}
+
+p{ margin-bottom: 1.3em; }
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    font-family: var(--cb-font-family-display, var(--cb-font-family-base, Georgia, serif));
+}
+
+article .h1, article .h2, article .h3, article .h4, article .h5, article .h6, article h1, article h2, article h3, article h4, article h5, article h6 {
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+    font-family: var(--cb-font-family-display, var(--cb-font-family-base, Georgia, serif));
+    line-height: 1.2;
+}
+
+article h1, article .h1 {
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+article h2, article .h2 {
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+}
+
+a {
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+    color: inherit;
+
+    &:hover {
+        text-decoration-color: var(--cb-primary-color);
+    }
+}
+
+
+/* Fading effects */
+
+
+/* Initially, steps are invisible */
+.step {
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.visible-step {
+    opacity: 1 !important;
+}
+
+#step0{
+    opacity: 1 !important;
+}
+
+.step.fade-in {
+    opacity: 1;
+    transition: opacity 0.5s ease-in;
+}
+
+
+
+.step.fade-out {
+    opacity: 0;
+    transition: opacity 0.75s ease-out;
+}
+/* To make sure the first step starts visible */
+#scrolly article .step:first-child {
+    opacity: 1;
+}
+
+.step{
+    margin-top:20px;
+}
+
+/* Print styles for steps */
+@media print {
+    .step {
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
+        break-inside: avoid;
+    }
+}
+
+.essay-main {
+    max-width: 633px;
+    width: 60%;
+    margin: 0 16% 0;
+    @media (max-width: 1199px) {
+    
+    margin: 0 10% 0;
+
+    }
+    @media (max-width: 768px) {
+        width: 90%;
+        margin: 0 2%;
+    }
+}
+
+/*Marginal Notes on Desktop*/
+aside, .aside {
+    display: inline;
+    float: right;
+    position: relative;
+    width: 20vw;
+    margin-right: -26vw;
+    font-size: 0.82em !important;
+    font-style: italic;
+    line-height: 1.55;
+    color: var(--cb-text-800);
+}
+
+/*Marginal Notes on mobile — kept as fallback for no-JS; JS hides and replaces with flag system */
+@media (max-width: 768px) {
+    aside, .aside {
+        display: block;
+        float: none;
+        margin: 1.25em 0 1.25em 1.5em;
+        width: auto;
+        font-size: 0.875em;
+        font-style: italic;
+        color: var(--cb-text-800);
+    }
+}
+
+/* Aside reference marker (replaces asterisk) */
+.aside-ref {
+    font-size: 0.6em;
+    vertical-align: super;
+    font-style: normal;
+    font-family: inherit;
+    color: var(--cb-primary-color);
+    line-height: 1;
+    cursor: default;
+    user-select: none;
+}
+
+/* Number prepended inside aside on desktop */
+.aside-num {
+    font-size: 0.72em;
+    vertical-align: super;
+    font-style: normal;
+    color: var(--cb-primary-color);
+    margin-right: 0.2em;
+    line-height: 1;
+}
+
+/* Mobile: flag tab on right viewport edge */
+.aside-flag {
+    position: fixed;
+    right: 0;
+    width: 28px;
+    min-height: 44px;
+    padding: 10px 4px;
+    background-color: var(--cb-accent-color, #3d7b53);
+    color: #fff;
+    border: none;
+    border-radius: 4px 0 0 4px;
+    font-size: 0.72rem;
+    font-style: normal;
+    font-family: var(--cb-font-family-base, Georgia, serif);
+    line-height: 1.3;
+    cursor: pointer;
+    z-index: 100;
+    text-align: center;
+    transition: width 0.15s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &:hover,
+    &:focus {
+        width: 34px;
+        outline: none;
+    }
+}
+
+/* Modal aside content styling */
+.aside-modal-num {
+    font-size: 0.65rem;
+    font-style: normal;
+    font-family: inherit;
+    color: var(--cb-primary-color);
+    letter-spacing: 0.04em;
+}
+
+.aside-modal-content {
+    font-size: 0.9rem;
+    font-style: italic;
+    color: var(--cb-text-800);
+    line-height: 1.6;
+}
+
+
+p {
+    line-height: 1.65;
+}
+
+.text-justify  { text-align: justify !important; }
+
+
+video::cue {
+    font-family: var(--cb-font-family-base, Georgia, serif);
+    font-size: 1.04em;
+    line-height: 1.2;
+    padding: 0 0.5em;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.lg-video{
+    width: 800px !important;
+    height: auto;
+    @media (max-width: 868px) {
+        width: 100% !important;
+    }
+}
+
+:root {
+    --bs-link-hover-color: var(--cb-primary-color);
+}
+
+.btn-link {
+    color: var(--cb-primary-color);
+    &:hover {
+        color: var(--cb-primary-color);
+    }
+}
+
+.mini {
+    font-size: .75em;
+}
+
+.blockquote-footer {
+    color: var(--cb-text-800);
+}
+
+
+.title-container {
+        height: 80vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow-y: visible;
+        @media screen and (max-width: 768px) {
+            height: 67vh;
+            
+        }
+    }
+    
+    .title {
+        opacity: 0;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        font-style: italic;
+        line-height: .8em;
+        font-size: 13em;
+        
+        @media screen and (max-width: 1200px) {
+            font-size: 10em; 
+            
+        }
+        @media screen and (max-width: 768px) {
+            font-size: 5.5em; 
+            
+        }
+        @media screen and (max-width: 528px) {
+            font-size: 4.5em; 
+            
+        }
+    }
+    
+    .letter {
+        display: inline-block;
+        transform: translate(0, 0);
+        opacity: 0;
+        transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .letter.animate {
+        opacity: 1;
+        transform: translate(0, 0) !important;
+    }
+    .gradient-fade-out {
+        height: 333px;
+        background-image: linear-gradient(to bottom, var(--cb-text-950), var(--cb-surface-100));
+        position: relative;
+        margin-top: -1px;
+    }
+    .gradient-fade-in {
+        height: 133px;
+        background-image: linear-gradient(to bottom, var(--cb-surface-100), var(--cb-text-950));
+        position: relative;
+        margin-top: -1px;
+    }
+
+    .accordion-header {
+        margin-top:0px !important;
+    }
+
+/* ============================================
+   Essay Navigation System
+   ============================================ */
+
+.essay-navbar {
+    background: var(--cb-navbar-bg);
+    border-bottom: 1px solid var(--cb-navbar-border);
+    padding: 1rem;
+
+    .navbar-brand {
+        font-style: italic;
+        font-weight: normal;
+        font-size: 1.6rem; /* fallback for non-fluid-title contexts */
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        color: var(--cb-navbar-text);
+        text-decoration: none;
+        transition: opacity 0.2s ease;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+
+        &:hover { opacity: 0.8; }
+    }
+
+    .essay-nav-btn {
+        background: none;
+        border: none;
+        font-size: 0.72rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--cb-navbar-text);
+        opacity: 0.85;
+        cursor: pointer;
+        padding: 0.5rem 0.75rem;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        border-radius: 4px;
+        transition: opacity 0.15s ease, background 0.15s ease;
+
+        &:hover {
+            opacity: 1;
+            background: var(--cb-navbar-hover-bg);
+        }
+        svg { flex-shrink: 0; }
+    }
+
+    /* Larger touch target for the icon-only hamburger button */
+    .essay-nav-btn--menu {
+        padding: 0.5rem;
+        opacity: 1;
+    }
+}
+
+/* Essay-mode: fluid title so long site names don't overflow */
+.essay-navbar__title-wrap {
+    max-width: calc(100% - 60px);
+}
+
+/* Higher specificity than .essay-navbar .navbar-brand so clamp() wins */
+.essay-navbar .essay-navbar__fluid-title {
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.2;
+    display: block;
+}
+
+/* Monograph navbar: CSS grid for geometric centering */
+.essay-navbar-3col {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    width: 100%;
+    padding: 0.25rem 0;
+}
+.essay-navbar-left  { display: flex; justify-content: flex-start; }
+.essay-navbar-center { min-width: 0; padding: 0 1rem; text-align: center; }
+.essay-navbar-right { display: flex; justify-content: flex-end; }
+
+/* Home page fluid titles — replace Bootstrap display-* classes */
+.home-title {
+    font-weight: normal;
+    line-height: 1.15;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+.home-title--no-image { font-size: clamp(2rem, 5vw, 2.75rem); }
+.home-title--half     { font-size: clamp(1.75rem, 2.5vw, 2.25rem); }
+.home-title--hero     { font-size: clamp(2rem, 4.5vw, 2.75rem); }
+.home-title--overlay  { font-size: clamp(2rem, 4.5vw, 2.5rem); font-weight: 700; }
+
+/* Contents off-canvas (slides from left) */
+#offcanvasContents {
+    width: min(340px, 90vw);
+    background: var(--cb-surface-100);
+    border-right: 1px solid var(--cb-border-200) !important;
+
+    .offcanvas-header {
+        border-bottom: 1px solid var(--cb-border-100);
+        padding: 0.875rem 1.5rem;
+
+    }
+
+
+    .offcanvas-title {
+        font-size: 0.72rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--cb-text-600);
+        margin: 0;
+    }
+
+    .offcanvas-body { padding: 0; }
+}
+
+.essay-toc-link {
+    display: block;
+    padding: 0.875rem 1.5rem;
+    text-decoration: none;
+    color: var(--cb-text-900);
+    border-bottom: 1px solid var(--cb-border-100);
+    transition: background 0.15s ease;
+
+    &:hover { background: var(--cb-surface-200); }
+
+    &.is-current {
+        font-style: italic;
+        font-weight: 600;
+        color: var(--cb-text-950);
+        background: var(--cb-surface-300);
+    }
+
+    .essay-toc-num {
+        font-family: system-ui, -apple-system, sans-serif;
+        font-size: 0.68rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--cb-text-600);
+        display: block;
+        margin-bottom: 0.15em;
+    }
+
+    .essay-toc-title {
+        font-size: 1rem;
+        line-height: 1.3;
+        display: block;
+    }
+}
+
+/* ============================================
+   Section Nav — floating in-page H2 sidebar
+   Only rendered when show-section-nav: true
+   Pinned to bottom-left, expands upward
+   ============================================ */
+.section-nav-menu {
+    position: fixed;
+    left: 20px;
+    bottom: 10px;
+    width: 180px;
+    max-height: calc(100vh - 220px);
+    padding: 20px 0;
+    z-index: 500;
+    overflow-y: auto;
+    overflow-x: hidden;
+    backdrop-filter: blur(8px);
+    border-radius: 3px;
+    border: .5px solid var(--cb-border-200);
+    scrollbar-width: thin;
+    scrollbar-color: var(--cb-muted) rgba(0, 0, 0, 0);
+    transition: opacity 200ms ease;
+
+    @media (max-width: 1199px) { display: none; }
+
+    &.footer-visible {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    &::-webkit-scrollbar { width: 4px; }
+    &::-webkit-scrollbar-track { background: transparent; }
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--cb-muted);
+        border-radius: 2px;
+    }
+}
+
+.nav-open .section-nav-menu {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.section-nav-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.4rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--cb-text-600);
+    padding: 0 15px 12px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid var(--cb-border-200);
+}
+
+.section-nav-title-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.section-nav-print {
+    flex-shrink: 0;
+    color: var(--cb-text-500);
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: color 150ms ease;
+    &:hover { color: var(--cb-text-900); }
+}
+
+.section-nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li { margin: 0; }
+}
+
+.section-nav-link {
+    display: block;
+    padding: 8px 15px;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: var(--cb-text-700);
+    text-decoration: none;
+    transition: color 150ms ease, background-color 150ms ease;
+
+    &:hover {
+        color: var(--cb-text-900);
+        background: var(--cb-surface-300);
+    }
+
+    &.active {
+        color: var(--cb-text-900);
+        font-weight: 600;
+        background: var(--cb-surface-300);
+    }
+}
+
+/* Navigation off-canvas menu — matches navbar color scheme */
+#offcanvasNavbar {
+    background: var(--cb-navbar-bg);
+    border-left: 1px solid var(--cb-navbar-border, var(--cb-border-200)) !important;
+
+    .offcanvas-title {
+        font-style: italic;
+        font-weight: normal;
+        font-size: 1.1rem;
+        color: var(--cb-navbar-text);
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    small {
+        color: var(--cb-navbar-text);
+        opacity: 0.8;
+    }
+
+    .btn-close {
+        filter: var(--cb-btn-close-filter, none);
+        }
+        
+    .nav-link {
+        color: var(--cb-navbar-text);
+        opacity: 0.95;
+        padding-left: 5px;
+        border-radius: 4px;
+        transition: opacity 0.15s ease, background 0.15s ease;
+        &:hover {
+            opacity: 1;
+            background: var(--cb-navbar-hover-bg);
+        }
+        &.active { opacity: 1; font-style: italic; }
+    }
+
+    .dropdown-menu {
+        background: var(--cb-surface-200);
+        border-color: var(--cb-border-200);
+    }
+
+    .dropdown-item {
+        color: var(--cb-text-800);
+        &:hover, &:focus { background: var(--cb-surface-300); color: var(--cb-text-950); }
+        &.active { background: var(--cb-surface-300); color: var(--cb-text-950); }
+    }
+}
+
+/* Collection item card embeds within essays */
+.item-content .card {
+    background-color: transparent;
+    border: none;
+}
+
+/* HR rules in essay body use the theme's accent color */
+.essay-main hr {
+    border-top-color: var(--cb-hr-color);
+    opacity: 1;
+}
+
+footer.bg-black {
+    background-color: var(--cb-navbar-bg) !important;
+}
+
+/* Search highlight marks — warm amber, theme-neutral */
+mark.essay-search-highlight {
+    background-color: oklch(93% 0.08 85);
+    color: inherit;
+    padding: 0 0.1em;
+    border-radius: 2px;
+}
+
+/* Search highlight banner — scholarly styling, no Bootstrap alert-warning */
+#essay-search-banner {
+    background: var(--cb-surface-200);
+    border: 1px solid var(--cb-border-200);
+    border-radius: 4px;
+    padding: 0.6rem 1rem;
+    font-size: 0.875rem;
+    color: var(--cb-text-700);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+
+    .btn-close { margin-left: auto; }
+}
+
+
+
+/* ============================================================
+   Bridge CB primary color token → Bootstrap btn CSS variables
+   Ensures btn-primary and btn-outline-primary (used on the
+   timeline year nav, cloud tag buttons, etc.) honor the active
+   CB color theme rather than Bootstrap's default blue.
+   Bootstrap 5.2+ supports per-selector --bs-btn-* overrides.
+   ============================================================ */
+.btn-primary {
+    --bs-btn-bg:                var(--cb-primary-color);
+    --bs-btn-border-color:      var(--cb-primary-color);
+    --bs-btn-hover-bg:          var(--cb-primary-color);
+    --bs-btn-hover-border-color: var(--cb-primary-color);
+    --bs-btn-active-bg:         var(--cb-primary-color);
+    --bs-btn-active-border-color: var(--cb-primary-color);
+    --bs-btn-disabled-bg:       var(--cb-primary-color);
+    --bs-btn-disabled-border-color: var(--cb-primary-color);
+    filter: none; // prevent token changes from compounding
+}
+
+.btn-outline-primary {
+    --bs-btn-color:             var(--cb-primary-color);
+    --bs-btn-border-color:      var(--cb-primary-color);
+    --bs-btn-hover-bg:          var(--cb-primary-color);
+    --bs-btn-hover-border-color: var(--cb-primary-color);
+    --bs-btn-active-bg:         var(--cb-primary-color);
+    --bs-btn-active-border-color: var(--cb-primary-color);
+}
+
+/* ============================================================
+   CB token overrides for upstream _pages.scss components
+   _pages.scss is kept unmodified for upstream CB-CSV merges.
+   ============================================================ */
+
+// Breadcrumb — was rgb(248,249,250)
+.breadcrumb {
+    background-color: var(--cb-surface-200);
+}
+
+// Browse page date range inputs — was #ced4da
+.date-input-group input {
+    border-color: var(--cb-border-200);
+}
+
+// Browse page date separator — was #6c757d
+.date-separator {
+    color: var(--cb-text-600);
+}
+
+// About page mobile TOC toggle — was #dedede
+#about-toc-title button {
+    background-color: var(--cb-surface-300);
+}
+
+/* Spotlight custom item-page button */
+.spl-item-page {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="%23fff" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/><path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/></svg>');
+    background-size: 21px;
+}
+
+/* Spotlight footer: grid layout — title+description stack left, button anchored right */
+#spotlight .spl-footer {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    align-items: start;
+    column-gap: 20px;
+}
+
+#spotlight .spl-footer .spl-title {
+    grid-column: 1;
+    grid-row: 1;
+    margin: 6px 0 4px;
+    font-size: 25px;
+}
+
+#spotlight .spl-footer .spl-description {
+    grid-column: 1;
+    grid-row: 2;
+    display: block;
+    font-size: 12px;
+    opacity: 0.7;
+    margin: 0 0 16px;
+    line-height: 1.4;
+}
+
+/* Button sits in the right column, spanning both title and description rows */
+#spotlight .spl-footer .spl-button {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: start;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    margin-top: 6px;
+    margin-bottom: 12px;
+    width: auto;
+}
+
+/* Responsive: revert to block flow on mobile */
+@media (max-width: 768px) {
+    #spotlight .spl-footer {
+        display: block;
+    }
+
+    #spotlight .spl-footer .spl-title {
+        width: 100%;
+        margin-bottom: 6px;
+    }
+
+    #spotlight .spl-footer .spl-description {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    #spotlight .spl-footer .spl-button {
+        align-items: flex-start;
+        text-align: left;
+        width: auto;
+        margin-top: 0;
+    }
+}
+
+/* ========================================
+   Print Hub Page (/print/)
+   Screen-only UI for composing print/PDF output.
+   ======================================== */
+
+.print-hub {
+  max-width: 860px;
+  margin: 3rem auto;
+  padding: 0 1.5rem 4rem;
+
+  .print-hub-header {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--cb-border-200);
+
+    h1 {
+      font-family: system-ui, sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cb-text-600);
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 1rem;
+      color: var(--cb-text-600);
+      max-width: 55ch;
+      margin: 0;
+    }
+  }
+
+  .print-hub-section {
+    margin-bottom: 2.5rem;
+
+    > h2 {
+      font-family: system-ui, sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cb-text-500);
+      margin-bottom: 1rem;
+    }
+  }
+
+  .format-selector {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-bottom: 0;
+
+    .format-label {
+      font-family: system-ui, sans-serif;
+      font-size: 0.75rem;
+      color: var(--cb-text-600);
+      margin-right: 0.4rem;
+    }
+
+    .format-btn {
+      font-family: system-ui, sans-serif;
+      font-size: 0.72rem;
+      padding: 0.25rem 0.65rem;
+      border: 1px solid var(--cb-border-200);
+      background: transparent;
+      color: var(--cb-text-800);
+      cursor: pointer;
+      letter-spacing: 0.03em;
+      transition: all 120ms ease;
+
+      &:hover { background: var(--cb-surface-200); }
+
+      &.active {
+        background: var(--cb-navbar-bg);
+        color: var(--cb-navbar-text);
+        border-color: var(--cb-navbar-bg);
+      }
+    }
+  }
+
+  .tributary-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: var(--cb-border-200);
+    border: 1px solid var(--cb-border-200);
+    margin-bottom: 2rem;
+  }
+
+  .tributary-card {
+    background: var(--cb-surface-100);
+    padding: 1.1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .card-title {
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--cb-text-900);
+      margin: 0;
+    }
+
+    .card-link {
+      font-family: system-ui, sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--cb-text-600);
+      text-decoration: none;
+      margin-top: auto;
+      padding-top: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+
+      &:hover { color: var(--cb-text-950); }
+      svg { opacity: 0.6; flex-shrink: 0; }
+    }
+  }
+
+  .book-builder {
+    background: var(--cb-surface-100);
+    border: 1px solid var(--cb-border-200);
+    padding: 1.25rem 1.5rem;
+
+    .book-checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.5rem;
+
+      li {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-family: system-ui, sans-serif;
+        font-size: 0.8rem;
+        color: var(--cb-text-800);
+
+        input[type="checkbox"] {
+          width: 13px;
+          height: 13px;
+          cursor: pointer;
+          accent-color: var(--cb-primary-color);
+        }
+      }
+    }
+
+    .book-generate-btn {
+      font-family: system-ui, sans-serif;
+      font-size: 0.72rem;
+      padding: 0.45rem 1.1rem;
+      background: var(--cb-navbar-bg);
+      color: var(--cb-navbar-text);
+      border: none;
+      cursor: pointer;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      transition: background 120ms ease;
+
+      &:hover { background: var(--cb-footer-bg); }
+    }
+  }
+}
