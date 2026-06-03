@@ -3,6 +3,131 @@
 # values set here help configure details of individual pages in the website
 ##########
 
+
+
+##########
+## CB-ESSAY THEME OPTIONS
+##########
+
+##########
+# HOMEPAGE FEATURES
+#
+# Choose how your homepage image displays:
+#
+# full-image - Full-screen banner with overlaid title (dramatic, immersive)
+# half-image - Split layout, image on one side, text on other (great for book covers)
+# no-image - Text-only homepage with elegant typography (minimalist)
+#
+# Image source options:
+# - Relative path: /assets/img/your-image.jpg
+# - External URL: https://example.com/image.jpg
+# - Collection objectid: demo_001
+# IMAGES are defined below for older site
+image-style: full-image                # full-image, half-image, or no-image
+featured-image: /assets/img/feature.jpg
+featured-image-credit: "General Research Division, The New York Public Library. 'An illustration of writing brushes' The New York Public Library Digital Collections. 1908. [https://digitalcollections.nypl.org/items/07caacb0-c6cc-012f-af8d-58d385a7bc34](https://digitalcollections.nypl.org/items/07caacb0-c6cc-012f-af8d-58d385a7bc34)"
+#  featured-image-alt-text: "An illustration of writing brushes with Japanese labels" # Add alt text for accessibility
+
+
+# NAVIGATION FEATURES
+
+# true/false options to turn on navigation features on navbar and homepage
+
+show-contents-nav: false 
+# true == navbar shows a "Contents" button that opens the essay chapter list
+show-homepage-toc: true 
+# true == homepage displays a table of contents listing all essays
+show-section-nav: false 
+# true ==  essay pages show a fixed floating sidebar (on wide screens)
+
+
+
+
+# COLOR THEME
+# ────────────────────────────────────────────────────────────────────────
+# Each theme draws its palette from a historical press,and ships with 
+# a recommended font pairing (used when base-font-family: theme).
+#
+# Options: default, idaho, lyre, nonesuch, aldine, doves, kelmscott,
+#          gregynog, ashendene, custom
+# ────────────────────────────────────────────────────────────────────────
+
+color-theme: default
+
+#### BUILT-IN THEMES (printing-history references)
+# idaho     — USDA, 1958 Douglas-fir cloth, gold stamp · dark green navbar · Spectral
+# lyre      — PF Collier, 1902, Faded indigo cloth, gilt spine · dark indigo navbar · EB Garamond
+# nonesuch  — Nonesuch Press, 1927 (The Temple) cream cloth ruled in red · light navbar · Cardo + EB Garamond
+# aldine    — Aldus Manutius, Venice 1495 · marine blue navbar · Cormorant Garamond
+# doves     — Doves Press 1900 · severe black-on-white · Libre Caslon Text
+# kelmscott — William Morris, holland-blue boards + rubric red · light navbar · Sorts Mill Goudy
+# gregynog  — Welsh private press, three-colour printing · slate-buckram navbar · Cormorant Infant
+# ashendene — C.H. St. John Hornby, Chelsea 1895 · faded brown calf · Cardo + IM Fell Double Pica
+
+#### CUSTOM COLOR
+# Set color-theme: custom, then provide a hex color.
+# The system extracts the hue and generates a matching palette.
+# Set navbar-style: dark for a dark themed navbar (white text).
+#
+# color-theme: custom
+# custom-color: "#8B4513"
+# navbar-style: dark    # dark (default) | light
+#
+# Want more themes? Use _prompts/add-theme.md and work with your favorite chatbot to create your own theme. 
+
+# TYPOGRAPHY & FONTS
+# ────────────────────────────────────────────────────────────────────────
+# Three ways to set fonts:
+#
+#   1. Use a built-in color-theme's recommended pairing (easiest):
+#        base-font-family: theme
+#        display-font-family: theme        # match headings to theme too
+#
+#   2. Use Georgia (no Google Fonts request, works offline):
+#        base-font-family: Georgia
+#        display-font-family: Georgia
+#
+#   3. Use a custom Google Font:
+#        base-font-family: "'Literata', Georgia, serif"
+#        display-font-family: "'Literata', Georgia, serif"
+#        font-cdn: "https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;1,7..72,400&display=swap"
+#
+# Mix and match: e.g. set base-font-family: theme and display-font-family
+# to a custom family if you want themed body text with your own headings.
+# ────────────────────────────────────────────────────────────────────────
+
+base-font-size: 1.2em            # 1.2em – 1.4em recommended for long-form reading
+
+base-font-family: theme           # 'theme' | 'Georgia' | "'YourFont', Georgia, serif"
+display-font-family: theme        # 'theme' | 'Georgia' | "'YourFont', Georgia, serif"
+
+font-cdn:                         # only set if base/display-font-family is custom
+
+# Legacy color overrides — uncomment to override the theme's colors.
+# In most cases, leave these commented out and let `color-theme:` below
+# drive these values via CSS variables.
+# text-color: "#191919"
+# link-color: "#003a55"
+
+
+##########
+# PRINT / PDF
+#
+# Paged.js-based print and PDF output for the essay collection.
+# The print hub is available at /print/ once added to config-nav.csv.
+#
+print:
+  author:                  # Author name for PDF <meta> and cover page
+  institution:             # Institution shown on cover page
+  cover-subtitle:          # Subtitle line beneath site title on book cover
+  show-individual: true    # true/false — show individual essay print cards
+  show-book: true          # true/false — show book builder section
+  aside-style: margin      # margin (float into page gutter) | inline (indented callout block)
+
+
+
+
+
 ##########
 # HOME PAGE
 #
