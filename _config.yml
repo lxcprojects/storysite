@@ -4,6 +4,21 @@
 # https://github.com/CollectionBuilder/collectionbuilder-csv
 ##########
 
+collections:
+  essay:
+    sort_by: order  # Essays display in order based on "order" field in front matter
+    output: true    # Generate individual HTML pages for each essay
+
+defaults:
+  -
+    scope:
+      path: ""              # Apply to all files in _essay/
+      type: "essay"         # Jekyll collection type
+    values:
+      layout: "essay-content"                 # Layout template for essay pages
+      permalink: /essay/:slug:output_ext      # URL pattern: /essay/filename.html
+      text_search: true  # opt in to text search
+
 ##########
 # URL VARIABLES
 #
