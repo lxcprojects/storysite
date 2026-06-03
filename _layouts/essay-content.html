@@ -1,0 +1,52 @@
+---
+layout: default
+gallery: true
+custom-foot: essay/js/spotlight-media-handler.html;essay/js/essay-search-highlight-js.html
+---
+
+{% if page.featured-image %}{% include essay/top-cover.html %}{% endif %}
+
+<div class="container my-5">
+<div class="row">
+    <div id="scrolly" class="container my-4">
+        <article id="step0">
+            {%- assign content_start = content | strip | slice: 0, 200 -%}
+            {%- assign has_title_header = false -%}
+            {%- if content_start contains page.title -%}
+                {%- if content_start contains '<h1' or content_start contains '<h2' -%}
+                    {%- assign has_title_header = true -%}
+                {%- endif -%}
+            {%- endif -%}
+            
+            {% unless has_title_header %}
+            <h1 class="display-5 essay-main" id="page-title">{{ page.title }}</h1>
+            {% endunless %}
+
+            <div class="row my-4 step visible-step">
+                <div class="{% if content-width %}col-md-{{content-width}} {% else %}essay-main {% endif %}{% if content-indent %}offset-md-{{content-indent}} {% endif %}{% if font-size %}fs-{{font-size}} {% endif %}{{additional-content-styles }}">
+{{content}}
+                </div>
+            </div>
+        </article>
+    </div>
+</div>
+<div class="row">
+    <div class="text-start col" id="prev-section-button">
+        {% if page.previous %}<a class="display-6 btn btn-lg btn-outline-dark next-button" href="{{ page.previous.url | relative_url }}">{% if page.previous.section-title %}{{ page.previous.section-title }} &laquo;{% else %}Prev &laquo;{% endif %}</a>{% endif %}
+    </div>
+    <div class="text-end col" id="next-section-button">
+        {% if page.next %}<a class="display-6 btn btn-lg btn-outline-dark next-button" href="{{ page.next.url | relative_url }}">{% if page.next.section-title %}{{ page.next.section-title }} &raquo;{% else %}Next &raquo;{% endif %}</a>{% endif %}
+    </div>
+    </div>
+</div>
+
+{% unless page.scrollama == false %}
+<script src="{{ '/assets/lib/scrollama.js' | relative_url }}"></script>
+{% include essay/js/essay-scroll-js.html %}
+{% endunless %}
+
+{% if site.data.theme.show-section-nav and page.show-section-nav != false %}
+{% include essay/js/section-nav.html %}
+{% endif %}
+
+{% include essay/js/aside-flags.html %}

@@ -1,0 +1,511 @@
+---
+layout: default
+gallery: true
+---
+
+{%- comment -%}
+Check if there's only one actual essay (excluding README)
+Essays have both title and order in front matter
+{%- endcomment -%}
+{%- assign actual_essays = site.essay | where_exp: "item", "item.title and item.order" -%}
+{%- assign essay_count = actual_essays.size -%}
+
+{%- if essay_count == 1 -%}
+  {%- comment -%} Single essay mode - include scrollama script and off-canvas menu {%- endcomment -%}
+  <script src="{{ '/assets/lib/scrollama.js' | relative_url }}"></script>
+  {% include essay/off-canvas-menu.html %}
+{%- endif -%}
+
+<style>
+    /* Full image banner styles */
+    #home-banner {
+        {% if site.data.theme.featured-image %}background-image: url('{{ site.data.theme.featured-image | relative_url }}');{% endif %}
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: {{ site.data.theme.home-banner-image-position | default: "center" }};
+        min-height: 100vh;
+        width: 100%;
+        position: relative;
+    }
+      #title-box {
+        position: absolute;
+        top: 15%;
+        left: 5%;
+        max-width: min(85%, 680px);
+        max-height: 50vh;
+    }
+    #action-box {
+        position: absolute;
+        right: 5%;
+        bottom: 5%;
+        text-align: right;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 1rem;
+    }
+
+    /* Half-width image styles */
+    .home-header-half {
+        background: var(--cb-surface-100);
+        border-bottom: 1px solid var(--cb-border-200);
+    }
+    .min-vh-50 {
+        min-height: 50vh;
+        max-height: 100vh;
+    }
+    .home-header-image {
+        position: relative;
+        max-height: 100vh;
+    }
+    .home-header-image img {
+        transition: transform 0.3s ease;
+        max-height: 100vh;
+        object-fit: contain;
+    }
+    .home-header-image:hover img {
+        transform: scale(1.02);
+    }
+    /* Mobile: half-image fills viewport height like full-image banner */
+    @media (max-width: 767.98px) {
+        .home-header-image {
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        .home-header-image img {
+            min-height: 100vh;
+            object-fit: cover;
+            padding: 0 !important;
+        }
+    }
+    /* Mobile title box (top-left) and action box (bottom-right) — matches full-image layout */
+    .home-mobile-title-box {
+        position: absolute;
+        top: 15%;
+        left: 5%;
+        max-width: min(85%, 680px);
+        max-height: 50vh;
+        z-index: 2;
+    }
+    .home-mobile-action-box {
+        position: absolute;
+        right: 5%;
+        bottom: 5%;
+        text-align: right;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 1rem;
+        z-index: 2;
+    }
+
+    /* No-image styles */
+    .home-header-no-image {
+        background: var(--cb-surface-100);
+        border-bottom: 1px solid var(--cb-border-200);
+        min-height: 50vh;
+    }
+    .home-header-no-image h1 {
+        display: inline-block;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid var(--cb-hr-color);
+    }
+    .home-header-no-image .tagline {
+        font-size: 1rem;
+        color: var(--cb-text-600);
+    }
+
+    /* Monograph TOC Styles */
+    .monograph-toc {
+        position: relative;
+        z-index: 10;
+    }
+    .monograph-toc .chapter-num {
+        font-size: inherit;
+        font-weight: normal;
+        color: var(--cb-text-700);
+    }
+    .monograph-toc .chapter-title {
+        font-size: 1.65rem;
+        font-weight: normal;
+        color: var(--cb-text-950);
+    }
+    .monograph-toc .chapter-byline {
+        font-style: italic;
+        color: var(--cb-text-600);
+        margin-top: 0.25rem;
+    }
+    .monograph-toc .list-group-item {
+        background: transparent;
+        border-bottom: 1px solid var(--cb-border-200);
+        transition: background-color 0.2s ease;
+    }
+    .monograph-toc .list-group-item:hover {
+        background-color: var(--cb-surface-200);
+    }
+    .monograph-toc a {
+        text-decoration: none;
+    }
+    .monograph-toc .toc-part {
+        margin-bottom: 2.5rem;
+    }
+    .monograph-toc .toc-part-heading {
+        font-size: 0.75rem;
+        font-weight: normal;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--cb-text-600);
+        margin-bottom: 0;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid var(--cb-border-200);
+    }
+    
+    /* Read CTA — themed across all header modes.
+       Uses --cb-cta-bg/text which guarantees contrast on the page surface:
+       dark-navbar themes use the navbar palette; light-navbar themes (nonesuch,
+       kelmscott) use the inverted pair so the button is always readable. */
+    .home-header-no-image .btn-dark,
+    .home-header-half .btn-dark {
+        --bs-btn-bg:                  var(--cb-cta-bg);
+        --bs-btn-border-color:        var(--cb-cta-bg);
+        --bs-btn-color:               var(--cb-cta-text);
+        --bs-btn-hover-bg:            var(--cb-cta-bg);
+        --bs-btn-hover-border-color:  var(--cb-cta-bg);
+        --bs-btn-hover-color:         var(--cb-cta-text);
+        --bs-btn-active-bg:           var(--cb-cta-bg);
+        --bs-btn-active-border-color: var(--cb-cta-bg);
+    }
+    .home-header-no-image .btn-dark:hover,
+    .home-header-half .btn-dark:hover { opacity: 0.82; }
+
+    /* Contents outline button — matches CTA color for visual consistency */
+    .home-header-no-image .btn-outline-dark,
+    .home-header-half .btn-outline-dark {
+        --bs-btn-color:               var(--cb-cta-bg);
+        --bs-btn-border-color:        var(--cb-cta-bg);
+        --bs-btn-hover-bg:            var(--cb-cta-bg);
+        --bs-btn-hover-border-color:  var(--cb-cta-bg);
+        --bs-btn-hover-color:         var(--cb-cta-text);
+        --bs-btn-active-bg:           var(--cb-cta-bg);
+        --bs-btn-active-border-color: var(--cb-cta-bg);
+        --bs-btn-active-color:        var(--cb-cta-text);
+    }
+
+    {%- if essay_count == 1 -%}
+    /* Single essay mode styles */
+    #single-essay-content {
+        margin-top: 2rem;
+    }
+    {%- endif -%}
+</style>
+
+{%- comment -%} 
+Render homepage header based on image style
+Same logic as before for full-image, half-image, or no-image
+{%- endcomment -%}
+{% if site.data.theme.image-style == 'half-image' %}
+{%- comment -%} Half-width image header {%- endcomment -%}
+<div class="home-header-half position-relative">
+    <div class="container-fluid px-0">
+        <div class="row align-items-center min-vh-50 g-0">
+            <!-- Text column - shows on desktop, hidden on mobile -->
+            <div class="col-md-6 order-md-1 d-none d-md-block">
+                <div class="px-5 py-5">
+                    <h1 class="home-title home-title--half mb-3 mt-0">{{ site.title }}</h1>
+                    {% if page.author or site.author %}
+                    <p class="tagline mb-4">by {{ page.author | default: site.author }}</p>
+                    {% elsif site.tagline %}
+                    <p class="tagline mb-4">{{ site.tagline }}</p>
+                    {% endif %}
+                    
+                    {%- if essay_count > 1 -%}
+                    <a class="btn btn-lg py-3 px-5 btn-dark text-decoration-none" href="{{ actual_essays[0].url | relative_url }}">Read &raquo;</a>
+                    {% if site.data.theme.show-homepage-toc %}<br>
+                    <a class="btn btn-outline-dark mt-3 text-decoration-none ms-3" href="#table-of-contents">Contents &darr;</a>
+                    {% endif %}
+                    {%- else -%}
+                    {%- comment -%} Single essay - scroll to content {%- endcomment -%}
+                    <a class="btn btn-lg py-3 px-5 btn-dark text-decoration-none" href="#single-essay-content">Read &raquo;</a>
+                    <button class="btn btn-sm py-2 px-4 btn-outline-dark mt-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">Menu</button>
+                    {%- endif -%}
+                </div>
+            </div>
+
+            <!-- Image column -->
+            <div class="col-md-6 order-md-2">
+                {% if site.data.theme.featured-image %}
+                <div class="home-header-image position-relative">
+                    <img src="{{ site.data.theme.featured-image | relative_url }}"
+                         alt="{{ site.data.theme.featured-image-alt-text | default: site.title }}"
+                         class="img-fluid w-100 py-5">
+
+                    <!-- Title box for mobile (matches full-image layout) -->
+                    <div class="home-mobile-title-box d-md-none py-3 px-4 text-white bg-dark bg-opacity-75 rounded">
+                        <h1 class="home-title home-title--hero mt-5">{{ site.title }}</h1>
+                        {% if page.author or site.author %}
+                        <p class="tagline mb-4">by {{ page.author | default: site.author }}</p>
+                        {% elsif site.tagline %}
+                        <p class="tagline mb-4">{{ site.tagline }}</p>
+                        {% endif %}
+                    </div>
+                    <!-- Action box for mobile (matches full-image layout) -->
+                    <div class="home-mobile-action-box d-md-none">
+                        {%- if essay_count > 1 -%}
+                        <a class="btn btn-lg py-3 px-5 text-white bg-dark bg-opacity-75 rounded text-decoration-none" href="{{ actual_essays[0].url | relative_url }}">Read &raquo;</a>
+                        {% if site.data.theme.show-homepage-toc %}
+                        <a class="btn btn-sm py-2 px-4 text-white bg-dark bg-opacity-75 rounded text-decoration-none" href="#table-of-contents">Contents &darr;</a>
+                        {% endif %}
+                        {%- else -%}
+                        <a class="btn btn-lg py-3 px-5 text-white bg-dark bg-opacity-75 rounded text-decoration-none" href="#single-essay-content">Read &raquo;</a>
+                        <button class="btn btn-sm py-2 px-4 text-white bg-dark bg-opacity-75 rounded" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">Menu</button>
+                        {%- endif -%}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if site.data.theme.featured-image-credit %}
+<div class="container py-1">
+    <div class="row">
+        <div class="col-md-6 offset-md-6 mb-0">
+            <!-- Mobile: modal trigger -->
+            <div class="d-md-none small">
+                <button type="button" class="btn btn-link btn-sm p-0 text-muted" data-bs-toggle="modal" data-bs-target="#imageCreditsModal">Image Credits</button>
+            </div>
+            <!-- Desktop: full credit text, right-aligned -->
+            <div class="d-none d-md-block text-muted small text-end" style="font-size:.65em">
+                {{ site.data.theme.featured-image-credit | markdownify }}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="imageCreditsModal" tabindex="-1" aria-labelledby="imageCreditsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title h5" id="imageCreditsModalLabel">Image Credits</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                {{ site.data.theme.featured-image-credit | markdownify }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% elsif site.data.theme.image-style == 'no-image' %}
+{%- comment -%} No-image header {%- endcomment -%}
+<div class="home-header-no-image container-fluid">
+    <div class="row justify-content-center align-items-center min-vh-50">
+        <div class="col-lg-8 col-md-10 text-center py-5">
+            <h1 class="home-title home-title--no-image mb-4">{{ site.title }}</h1>
+            {% if page.author or site.author %}
+            <p class="tagline mb-4">by {{ page.author | default: site.author }}</p>
+            {% elsif site.tagline %}
+            <p class="tagline mb-4">{{ site.tagline }}</p>
+            {% endif %}
+            
+            <div class="d-flex flex-column flex-md-row gap-3 justify-content-center">
+                {%- if essay_count > 1 -%}
+                <a class="btn btn-lg py-3 px-5 btn-dark text-decoration-none" href="{{ actual_essays[0].url | relative_url }}">Read &raquo;</a>
+                {%- else -%}
+                <a class="btn btn-lg py-3 px-5 btn-dark text-decoration-none" href="#single-essay-content">Read &raquo;</a>
+                <button class="btn btn-sm py-2 px-4 btn-outline-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">Menu</button>
+                {%- endif -%}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% else %}
+{%- comment -%} Full-width image banner — falls back to no-image layout when no featured-image is set {%- endcomment -%}
+{%- unless site.data.theme.featured-image -%}
+<div class="home-header-no-image container-fluid">
+    <div class="row justify-content-center align-items-center min-vh-50">
+        <div class="col-lg-8 col-md-10 text-center py-5">
+            <h1 class="home-title home-title--no-image mb-4">{{ site.title }}</h1>
+            {% if page.author or site.author %}
+            <p class="tagline mb-4">by {{ page.author | default: site.author }}</p>
+            {% elsif site.tagline %}
+            <p class="tagline mb-4">{{ site.tagline }}</p>
+            {% endif %}
+            <div class="d-flex flex-column flex-md-row gap-3 justify-content-center">
+                {%- if essay_count > 1 -%}
+                <a class="btn btn-lg py-3 px-5 btn-dark text-decoration-none" href="{{ actual_essays[0].url | relative_url }}">Read &raquo;</a>
+                {%- else -%}
+                <a class="btn btn-lg py-3 px-5 btn-dark text-decoration-none" href="#single-essay-content">Read &raquo;</a>
+                <button class="btn btn-sm py-2 px-4 btn-outline-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">Menu</button>
+                {%- endif -%}
+            </div>
+        </div>
+    </div>
+</div>
+{%- else -%}
+<div id="home-banner" class="container-fluid p-0">
+
+    <div id="title-box" class="py-3 px-4 text-white bg-dark bg-opacity-75 rounded">
+        <h1 class="home-title home-title--hero mt-5">{{ site.title }}</h1>
+        {% if page.author or site.author %}
+        <p class="tagline mb-4">by {{ page.author | default: site.author }}</p>
+        {% elsif site.tagline %}
+        <p class="tagline mb-4">{{ site.tagline }}</p>
+        {% endif %}
+    </div>
+
+    <div id="action-box">
+        {%- if essay_count > 1 -%}
+        <a class="btn btn-lg py-3 px-5 text-white bg-dark bg-opacity-75 rounded text-decoration-none" href="{{ actual_essays[0].url | relative_url }}">Read &raquo;</a>
+
+        {% if site.data.theme.show-homepage-toc %}
+        <a class="btn btn-sm py-2 px-4 text-white bg-dark bg-opacity-75 rounded text-decoration-none" href="#table-of-contents"><span class="d-none d-sm-inline">Table of </span>Contents &darr;</a>
+        {% endif %}
+        {%- else -%}
+        <a class="btn btn-lg py-3 px-5 text-white bg-dark bg-opacity-75 rounded text-decoration-none" href="#single-essay-content">Read &raquo;</a>
+        <button class="btn btn-sm py-2 px-4 text-white bg-dark bg-opacity-75 rounded" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">Menu</button>
+        {%- endif -%}
+    </div>
+
+
+</div>
+
+{% if site.data.theme.featured-image-credit %}
+<div class="container-fluid px-3 py-1">
+    <!-- Mobile: modal trigger -->
+    <div class="d-md-none small">
+        <button type="button" class="btn btn-link btn-sm p-0 text-muted" data-bs-toggle="modal" data-bs-target="#imageCreditsModal">Image Credits</button>
+    </div>
+    <!-- Desktop: full credit text, left-aligned -->
+    <div class="d-none d-md-block text-muted small w-50 text-start" style="font-size:.7em">
+        {{ site.data.theme.featured-image-credit | markdownify }}
+    </div>
+</div>
+<div class="modal fade" id="imageCreditsModal" tabindex="-1" aria-labelledby="imageCreditsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title h5" id="imageCreditsModalLabel">Image Credits</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                {{ site.data.theme.featured-image-credit | markdownify }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{%- endunless -%}
+{% endif %}
+
+{%- comment -%}
+SINGLE ESSAY CONTENT
+If only one essay exists, render it inline with essay-content structure
+{%- endcomment -%}
+{%- if essay_count == 1 -%}
+{%- assign single_essay = actual_essays[0] -%}
+
+<div id="single-essay-content" class="container my-5">
+    <div class="row">
+        <div id="scrolly" class="container my-4">
+            <article id="step0">
+                <h1 class="display-4 essay-main" id="page-title">{{ single_essay.title }}</h1>
+
+                <div class="row my-4 step visible-step">
+                    <div class="essay-main">
+                        {{ single_essay.content }}
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
+
+{%- comment -%} Include essay scrollama JavaScript if not disabled {%- endcomment -%}
+{%- unless single_essay.scrollama == false -%}
+{% include essay/js/essay-scroll-js.html %}
+{%- endunless -%}
+
+{%- comment -%} Include custom footer scripts from essay-content layout {%- endcomment -%}
+{% include essay/js/spotlight-media-handler.html %}
+
+{%- endif -%}
+
+{%- comment -%}
+MONOGRAPH TABLE OF CONTENTS
+Only show if multiple essays exist
+{%- endcomment -%}
+{%- if site.data.theme.show-homepage-toc and essay_count > 1 -%}
+<div id="table-of-contents" class="container-fluid py-5 monograph-toc">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+            <div class="text-start mb-5">
+                <h2 class="display-4 mb-2 fst-italic">Contents</h2>
+            </div>
+            
+            {%- assign essays = site.essay | sort: 'order' -%}
+            {%- assign toc_parts = essays | map: 'part' | compact | uniq -%}
+
+            {%- if toc_parts.size > 0 -%}
+            {%- comment -%} Grouped TOC: essays grouped under part headings {%- endcomment -%}
+            {%- for part in toc_parts -%}
+            <div class="toc-part">
+                <h3 class="toc-part-heading">{{ part }}</h3>
+                <div class="list-group list-group-flush mb-2">
+                    {%- for item in essays -%}
+                    {%- if item.part == part -%}
+                    <a href="{{ item.url | relative_url }}" class="list-group-item list-group-item-action py-4 px-4">
+                        <div class="d-flex flex-column align-items-start text-start">
+                            <h3 class="chapter-title mb-0">{%- if item.chapter -%}<span class="chapter-num">{{ item.chapter }}. </span>{%- endif -%}{{ item.title }}</h3>
+                            {%- unless item.byline == site.data.theme.essay[0].author -%}{%- if item.byline -%}
+                            <div class="chapter-byline">{{ item.byline }}</div>
+                            {%- endif -%}{%- endunless -%}
+                        </div>
+                    </a>
+                    {%- endif -%}
+                    {%- endfor -%}
+                </div>
+            </div>
+            {%- endfor -%}
+            {%- comment -%} Essays without a part, shown ungrouped at the end {%- endcomment -%}
+            {%- assign has_unparted = false -%}
+            {%- for item in essays -%}{%- unless item.part -%}{%- assign has_unparted = true -%}{%- endunless -%}{%- endfor -%}
+            {%- if has_unparted -%}
+            <div class="list-group list-group-flush mt-3">
+                {%- for item in essays -%}
+                {%- unless item.part -%}
+                <a href="{{ item.url | relative_url }}" class="list-group-item list-group-item-action py-4 px-4">
+                    <div class="d-flex flex-column align-items-start text-start">
+                        {%- if item.chapter -%}<span class="chapter-num">{{ item.chapter }}</span>{%- endif -%}
+                        <h3 class="chapter-title mb-0">{{ item.title }}</h3>
+                        {%- unless item.byline == site.data.theme.essay[0].author -%}{%- if item.byline -%}
+                        <div class="chapter-byline">{{ item.byline }}</div>
+                        {%- endif -%}{%- endunless -%}
+                    </div>
+                </a>
+                {%- endunless -%}
+                {%- endfor -%}
+            </div>
+            {%- endif -%}
+            {%- else -%}
+            {%- comment -%} Flat TOC (default, no part fields present) {%- endcomment -%}
+            <div class="list-group list-group-flush">
+                {%- for item in essays -%}
+                <a href="{{ item.url | relative_url }}" class="list-group-item list-group-item-action py-4 px-4">
+                    <div class="d-flex flex-column align-items-start text-start">
+                        {%- if item.chapter -%}<span class="chapter-num">{{ item.chapter }}</span>{%- endif -%}
+                        <h3 class="chapter-title mb-0">{{ item.title }}</h3>
+                        {%- unless item.byline == site.data.theme.essay[0].author -%}{%- if item.byline -%}
+                        <div class="chapter-byline">{{ item.byline }}</div>
+                        {%- endif -%}{%- endunless -%}
+                    </div>
+                </a>
+                {%- endfor -%}
+            </div>
+            {%- endif -%}
+        </div>
+    </div>
+</div>
+{%- endif -%}
